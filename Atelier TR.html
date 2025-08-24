@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Atelier d'Électronique | CRE Annaba</title>
+    <style>
+        /* Styles CSS globaux */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f7;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 950px;
+            margin: auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            padding: 30px;
+        }
+        h1 {
+            color: #1a5276;
+            border-bottom: 3px solid #1a5276;
+            padding-bottom: 10px;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #1a5276;
+        }
+        .intro-text {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .section {
+            background-color: #eaf2f8;
+            border-left: 5px solid #007bff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #007bff;
+            margin-top: 0;
+            font-size: 1.6em;
+        }
+        .section p {
+            color: #666;
+            line-height: 1.5;
+        }
+        #content-area {
+            display: none;
+            text-align: left;
+            margin-top: 25px;
+        }
+        #content-area h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f8f9fa;
+            margin-bottom: 12px;
+            padding: 12px;
+            border-left: 4px solid #007bff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        .contact {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+        .contact strong {
+            color: #1a5276;
+        }
+        /* Style pour les boutons de langue */
+        .language-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .lang-btn.active, .lang-btn:hover {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        /* Règle pour l'arabe */
+        body[lang="ar"] .container {
+            direction: rtl; /* Inverse le sens de la lecture */
+            text-align: right;
+        }
+        body[lang="ar"] .section {
+            border-left: none;
+            border-right: 5px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="language-buttons">
+            <button class="lang-btn active" onclick="setLanguage('fr')">Français</button>
+            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+            <button class="lang-btn" onclick="setLanguage('ar')">العربية</button>
+        </div>
+
+        <div id="home-page">
+            <h1 id="main-title">Atelier Électronique et Prototypage Rapide ⚙️</h1>
+            <p id="intro-text-1" class="intro-text">
+                Bienvenue au **Centre de Recherche en Environnement (CRE)** d'Annaba !<br>Je suis **Mahdi Hammouchi**, l'ingénieur en électronique et responsable de cet atelier. Notre espace est un véritable moteur d'innovation, ouvert aux étudiants et aux porteurs de projets de l'incubateur.
+            </p>
+            <p id="intro-text-2" class="intro-text">
+                Son rôle est de transformer les idées en prototypes concrets, en vous fournissant les outils et l'expertise nécessaires pour donner vie à vos créations.
+            </p>
+
+            <div id="section-1" class="section" onclick="showPage('impression3d')">
+                <h2 id="section-1-title">Impression 3D</h2>
+                <p id="section-1-desc">Découvrez notre imprimante 3D Anycubic Cobra Max. Un outil essentiel pour le prototypage rapide de vos boîtiers et pièces mécaniques.</p>
+            </div>
+
+            <div id="section-2" class="section" onclick="showPage('cnc')">
+                <h2 id="section-2-title">Machine CNC</h2>
+                <p id="section-2-desc">Gravez et fabriquez vos propres circuits imprimés (PCB) avec une précision professionnelle pour vos projets électroniques.</p>
+            </div>
+
+            <div id="section-3" class="section" onclick="showPage('traceur')">
+                <h2 id="section-3-title">Table Traceur</h2>
+                <p id="section-3-desc">Visualisez et préparez vos plans et schémas techniques sur papier avant la fabrication, pour une précision maximale.</p>
+            </div>
+
+            <div id="section-4" class="section" onclick="showPage('appareils')">
+                <h2 id="section-4-title">Appareils Électroniques & Outils</h2>
+                <p id="section-4-desc">Maîtrisez les outils de diagnostic et de mesure comme l'oscilloscope pour comprendre et valider le fonctionnement de vos circuits.</p>
+            </div>
+
+            <div class="contact">
+                <h2 id="contact-title">Contact</h2>
+                <p id="contact-text-1">Pour toute question ou demande d'assistance, je suis à votre disposition.</p>
+                <p id="contact-text-2"><strong>Responsable d'atelier :</strong> Mahdi Hammouchi</p>
+            </div>
+        </div>
+
+        <div id="content-area">
+            </div>
+    </div>
+
+    <script>
+        // Objet de traduction
+        const translations = {
+            fr: {
+                pageTitle: 'Atelier d\'Électronique | CRE Annaba',
+                mainTitle: 'Atelier Électronique et Prototypage Rapide ⚙️',
+                introText1: 'Bienvenue au **Centre de Recherche en Environnement (CRE)** d\'Annaba !<br>Je suis **Mahdi Hammouchi**, l\'ingénieur en électronique et responsable de cet atelier. Notre espace est un véritable moteur d\'innovation, ouvert aux étudiants et aux porteurs de projets de l\'incubateur.',
+                introText2: 'Son rôle est de transformer les idées en prototypes concrets, en vous fournissant les outils et l\'expertise nécessaires pour donner vie à vos créations.',
+                section1Title: 'Impression 3D',
+                section1Desc: 'Découvrez notre imprimante 3D Anycubic Cobra Max. Un outil essentiel pour le prototypage rapide de vos boîtiers et pièces mécaniques.',
+                section2Title: 'Machine CNC',
+                section2Desc: 'Gravez et fabriquez vos propres circuits imprimés (PCB) avec une précision professionnelle pour vos projets électroniques.',
+                section3Title: 'Table Traceur',
+                section3Desc: 'Visualisez et préparez vos plans et schémas techniques sur papier avant la fabrication, pour une précision maximale.',
+                section4Title: 'Appareils Électroniques & Outils',
+                section4Desc: 'Maîtrisez les outils de diagnostic et de mesure comme l\'oscilloscope pour comprendre et valider le fonctionnement de vos circuits.',
+                contactTitle: 'Contact',
+                contactText1: 'Pour toute question ou demande d\'assistance, je suis à votre disposition.',
+                contactText2: '<strong>Responsable d\'atelier :</strong> Mahdi Hammouchi',
+                backButton: 'Retour à l\'Atelier',
+                pages: {
+                    impression3d: {
+                        title: 'Imprimante 3D Anycubic Cobra Max',
+                        description: 'L\'imprimante 3D permet de transformer un modèle virtuel en un objet physique. C\'est l\'outil idéal pour le prototypage rapide, que ce soit pour des boîtiers, des supports, ou des pièces mécaniques sur mesure. Par exemple, vous pouvez imprimer un support pour un capteur ou un boîtier pour votre carte électronique.',
+                        tasks: [
+                            '<strong>Modélisation 3D :</strong> Créez votre modèle sur un logiciel comme Fusion 360 ou SolidWorks. Le format de sortie est généralement un fichier **.stl**.',
+                            '<strong>Découpe (slicing) :</strong> Utilisez un logiciel comme Cura ou PrusaSlicer pour convertir votre .stl en instructions de mouvement pour l\'imprimante (**G-code**).',
+                            '<strong>Préparation :</strong> Insérez le filament et vérifiez le nivellement du plateau pour garantir une bonne adhérence.',
+                            '<strong>Impression :</strong> Lancez le processus et surveillez la première couche pour éviter les erreurs.',
+                            '<strong>Post-traitement :</strong> Une fois l\'impression terminée, retirez les supports et lissez la pièce si nécessaire.'
+                        ]
+                    },
+                    cnc: {
+                        title: 'Machine de Gravure CNC pour PCB',
+                        description: 'Cette machine CNC permet de graver des circuits imprimés avec une précision millimétrique, évitant ainsi les méthodes chimiques fastidieuses. Elle est parfaite pour créer des prototypes de cartes électroniques fonctionnels et robustes. Par exemple, vous pouvez graver une carte pour votre projet de robot ou de station météo.',
+                        tasks: [
+                            '<strong>Conception :</strong> Dessinez votre circuit sur un logiciel de CAO (KiCad, Eagle) et générez les fichiers **Gerber** et **Excellon**.',
+                            '<strong>Génération du G-code :</strong> Importez vos fichiers Gerber dans un logiciel de pilotage comme FlatCAM ou ChiliPeppr pour générer les parcours d\'outil.',
+                            '<strong>Mise en place :</strong> Fixez votre plaque de cuivre sur la table et calibrez l\'outil.',
+                            '<strong>Gravure et perçage :</strong> Lancez la gravure des pistes, puis le perçage des trous.',
+                            '<strong>Finition :</strong> Après usinage, soudez vos composants sur la carte.',
+                        ]
+                    },
+                    traceur: {
+                        title: 'Table Traceur',
+                        description: 'Le traceur est un outil de dessin automatisé qui vous permet de produire des schémas précis, des plans de conception ou des visualisations de circuits à grande échelle. Il est idéal pour la préparation et la vérification de vos plans avant de passer à la production.',
+                        tasks: [
+                            '<strong>Préparation du fichier :</strong> Créez votre plan vectoriel sur un logiciel comme AutoCAD ou Inkscape et exportez-le au format **.svg** ou **.dxf**.',
+                            '<strong>Configuration :</strong> Placez le papier et le stylo sur la machine et définissez le point de départ.',
+                            '<strong>Lancement :</strong> Envoyez le fichier au traceur et observez le processus de dessin automatisé.',
+                            '<strong>Utilisation :</strong> Le plan tracé peut servir de guide de coupe, de documentation technique ou de schéma de référence pour vos projets.'
+                        ]
+                    },
+                    appareils: {
+                        title: 'Appareils Électroniques et Outils',
+                        description: 'L\'atelier est équipé de tous les outils et instruments de mesure nécessaires pour le développement, le test et la réparation de circuits électroniques. L\'objectif est de vous rendre autonome dans le diagnostic et l\'assemblage de vos projets.',
+                        tasks: [
+                            '<strong>Oscilloscope :</strong> Utilisez-le pour visualiser la forme des signaux électriques et diagnostiquer les problèmes de temps réel.',
+                            '<strong>Multimètre :</strong> Un outil indispensable pour mesurer la tension, le courant et la résistance. Apprenez à l\'utiliser pour vérifier la bonne alimentation de vos circuits.',
+                            '<strong>Fer à souder :</strong> Entraînez-vous à souder proprement les composants traversants et de surface sur vos circuits imprimés.',
+                            '<strong>Alimentation de laboratoire :</strong> Configurez la tension et le courant pour alimenter vos prototypes de manière sécurisée.',
+                            '<strong>Outils manuels :</strong> Pinces, tournevis, dénudeurs de fils... Maîtrisez ces outils de base pour tout travail d\'assemblage et de câblage.',
+                        ]
+                    }
+                }
+            },
+            en: {
+                pageTitle: 'Electronics Workshop | CRE Annaba',
+                mainTitle: 'Electronics and Rapid Prototyping Workshop ⚙️',
+                introText1: 'Welcome to the **Center for Environmental Research (CRE)** in Annaba!<br>I am **Mahdi Hammouchi**, the electronics engineer and head of this workshop. Our space is a true engine of innovation, open to students and project leaders from the incubator.',
+                introText2: 'Its role is to transform ideas into concrete prototypes, providing you with the necessary tools and expertise to bring your creations to life.',
+                section1Title: '3D Printing',
+                section1Desc: 'Discover our Anycubic Cobra Max 3D printer. An essential tool for the rapid prototyping of your enclosures and mechanical parts.',
+                section2Title: 'CNC Machine',
+                section2Desc: 'Engrave and manufacture your own printed circuit boards (PCBs) with professional precision for your electronic projects.',
+                section3Title: 'Plotter Table',
+                section3Desc: 'Visualize and prepare your technical plans and diagrams on paper before manufacturing, for maximum precision.',
+                section4Title: 'Electronic Devices & Tools',
+                section4Desc: 'Master diagnostic and measurement tools like the oscilloscope to understand and validate the functioning of your circuits.',
+                contactTitle: 'Contact',
+                contactText1: 'For any questions or assistance, I am at your disposal.',
+                contactText2: '<strong>Workshop Manager:</strong> Mahdi Hammouchi',
+                backButton: 'Back to Workshop',
+                pages: {
+                    impression3d: {
+                        title: 'Anycubic Cobra Max 3D Printer',
+                        description: 'The 3D printer allows you to transform a virtual model into a physical object. It is the ideal tool for rapid prototyping, whether for custom enclosures, supports, or mechanical parts. For example, you can print a holder for a sensor or an enclosure for your electronic board.',
+                        tasks: [
+                            '<strong>3D Modeling:</strong> Create your model on a software like Fusion 360 or SolidWorks. The output format is usually an **.stl** file.',
+                            '<strong>Slicing:</strong> Use a software like Cura or PrusaSlicer to convert your .stl into movement instructions for the printer (**G-code**).',
+                            '<strong>Preparation:</strong> Insert the filament and check the bed leveling to ensure good adhesion.',
+                            '<strong>Printing:</strong> Start the process and monitor the first layer to avoid errors.',
+                            '<strong>Post-processing:</strong> Once the print is finished, remove supports and smooth the part if necessary.'
+                        ]
+                    },
+                    cnc: {
+                        title: 'CNC Engraving Machine for PCBs',
+                        description: 'This CNC machine allows you to engrave printed circuit boards with millimeter precision, avoiding tedious chemical methods. It is perfect for creating functional and robust electronic board prototypes. For example, you can engrave a board for your robotics or weather station project.',
+                        tasks: [
+                            '<strong>Design:</strong> Draw your circuit on CAD software (KiCad, Eagle) and generate the **Gerber** and **Excellon** files.',
+                            '<strong>G-code Generation:</strong> Import your Gerber files into control software like FlatCAM or ChiliPeppr to generate the tool paths.',
+                            '<strong>Setup:</strong> Secure your copper board to the table and calibrate the tool.',
+                            '<strong>Engraving and Drilling:</strong> Start the engraving of the traces, then the drilling of the holes.',
+                            '<strong>Finishing:</strong> After machining, solder your components onto the board.',
+                        ]
+                    },
+                    traceur: {
+                        title: 'Plotter Table',
+                        description: 'The plotter is an automated drawing tool that allows you to produce precise diagrams, design plans, or large-scale circuit visualizations. It is ideal for preparing and verifying your plans before moving to production.',
+                        tasks: [
+                            '<strong>File Preparation:</strong> Create your vector plan on software like AutoCAD or Inkscape and export it in **.svg** or **.dxf** format.',
+                            '<strong>Configuration:</strong> Place the paper and pen on the machine and define the starting point.',
+                            '<strong>Launch:</strong> Send the file to the plotter and observe the automated drawing process.',
+                            '<strong>Usage:</strong> The traced plan can serve as a cutting guide, technical documentation, or a reference diagram for your projects.'
+                        ]
+                    },
+                    appareils: {
+                        title: 'Electronic Devices and Tools',
+                        description: 'The workshop is equipped with all the necessary tools and measuring instruments for the development, testing, and repair of electronic circuits. The goal is to make you self-sufficient in diagnosing and assembling your projects.',
+                        tasks: [
+                            '<strong>Oscilloscope:</strong> Use it to visualize the waveform of electrical signals and diagnose real-time problems.',
+                            '<strong>Multimeter:</strong> An essential tool for measuring voltage, current, and resistance. Learn to use it to verify the proper power supply to your circuits.',
+                            '<strong>Soldering Iron:</strong> Practice cleanly soldering through-hole and surface-mount components onto your PCBs.',
+                            '<strong>Laboratory Power Supply:</strong> Configure the voltage and current to safely power your prototypes.',
+                            '<strong>Manual Tools:</strong> Pliers, screwdrivers, wire strippers... Master these basic tools for any assembly and wiring work.',
+                        ]
+                    }
+                }
+            },
+            ar: {
+                pageTitle: 'ورشة الإلكترونيات | مركز البحث في البيئة عنابة',
+                mainTitle: 'ورشة الإلكترونيات والنمذجة السريعة ⚙️',
+                introText1: 'أهلاً بكم في **مركز البحث في البيئة (CRE)** بعنابة!<br>أنا **مهدي حموشي**، مهندس الإلكترونيات والمسؤول عن هذه الورشة. مساحتنا هي محرك حقيقي للابتكار، مفتوحة للطلاب وأصحاب المشاريع من الحاضنة.',
+                introText2: 'دورها هو تحويل الأفكار إلى نماذج أولية ملموسة، من خلال توفير الأدوات والخبرة اللازمة لكم لإحياء إبداعاتكم.',
+                section1Title: 'الطباعة ثلاثية الأبعاد',
+                section1Desc: 'اكتشفوا طابعتنا ثلاثية الأبعاد Anycubic Cobra Max. أداة أساسية للنمذجة السريعة لأغلفة ومكونات مشاريعكم الميكانيكية.',
+                section2Title: 'آلة CNC',
+                section2Desc: 'قوموا بنقش وتصنيع لوحات الدارات المطبوعة (PCBs) الخاصة بكم بدقة احترافية لمشاريعكم الإلكترونية.',
+                section3Title: 'طاولة الرسم (Plotter)',
+                section3Desc: 'قوموا بتصور وإعداد مخططاتكم الفنية على الورق قبل التصنيع، للحصول على أقصى درجات الدقة.',
+                section4Title: 'الأجهزة والأدوات الإلكترونية',
+                section4Desc: 'أتقنوا أدوات التشخيص والقياس مثل راسم الذبذبات (oscilloscope) لفهم وتأكيد عمل دوائركم.',
+                contactTitle: 'اتصل بنا',
+                contactText1: 'لأي أسئلة أو طلب مساعدة، أنا في خدمتكم.',
+                contactText2: '<strong>مسؤول الورشة:</strong> مهدي حموشي',
+                backButton: 'العودة إلى الورشة',
+                pages: {
+                    impression3d: {
+                        title: 'طابعة Anycubic Cobra Max ثلاثية الأبعاد',
+                        description: 'تسمح لكم الطابعة ثلاثية الأبعاد بتحويل نموذج افتراضي إلى جسم مادي. إنها الأداة المثالية للنمذجة السريعة، سواء كانت لأغلفة أو دعامات أو أجزاء ميكانيكية مخصصة. على سبيل المثال، يمكنكم طباعة حامل لجهاز استشعار أو غلاف للوحة الإلكترونية الخاصة بكم.',
+                        tasks: [
+                            '<strong>النمذجة ثلاثية الأبعاد:</strong> أنشئوا نموذجكم على برنامج مثل Fusion 360 أو SolidWorks. عادة ما يكون الإخراج ملفًا بصيغة **.stl**.',
+                            '<strong>التقطيع (slicing):</strong> استخدموا برنامجًا مثل Cura أو PrusaSlicer لتحويل ملف الـ .stl إلى تعليمات حركة للطابعة (**G-code**).',
+                            '<strong>التحضير:</strong> أدخلوا خيط الطباعة وتأكدوا من تسوية القاعدة لضمان التصاق جيد.',
+                            '<strong>البدء بالطباعة:</strong> ابدأوا العملية وراقبوا الطبقة الأولى لتجنب الأخطاء.',
+                            '<strong>المعالجة اللاحقة:</strong> بعد انتهاء الطباعة، قوموا بإزالة الدعامات وصقل القطعة إذا لزم الأمر.'
+                        ]
+                    },
+                    cnc: {
+                        title: 'آلة النقش CNC للوحات الدارات المطبوعة',
+                        description: 'تسمح لكم آلة CNC بنقش لوحات الدارات المطبوعة بدقة بالغة، مما يجنبكم الطرق الكيميائية المملة. إنها مثالية لإنشاء نماذج أولية وظيفية وقوية للوحاتكم الإلكترونية. على سبيل المثال، يمكنكم نقش لوحة لمشروع الروبوت أو محطة الطقس الخاصة بكم.',
+                        tasks: [
+                            '<strong>التصميم:</strong> ارسموا دارتكم على برنامج تصميم إلكتروني (KiCad, Eagle) وأنشئوا ملفات **Gerber** و **Excellon**.',
+                            '<strong>إنشاء الـ G-code:</strong> استوردوا ملفات Gerber في برنامج التحكم مثل FlatCAM أو ChiliPeppr لإنشاء مسارات الأداة.',
+                            '<strong>الإعداد:</strong> قوموا بتثبيت لوحة النحاس على الطاولة ومعايرة الأداة.',
+                            '<strong>النقش والحفر:</strong> ابدأوا بنقش المسارات، ثم حفر الثقوب.',
+                            '<strong>الإنهاء:</strong> بعد المعالجة، قوموا بلحم مكوناتكم على اللوحة.',
+                        ]
+                    },
+                    traceur: {
+                        title: 'طاولة الرسم (Plotter)',
+                        description: 'الآلة الراسمة هي أداة رسم آلية تسمح لكم بإنتاج مخططات دقيقة، أو خطط تصميم، أو رسومات دوائر كبيرة. إنها مثالية لإعداد والتحقق من خططكم قبل الانتقال إلى التصنيع.',
+                        tasks: [
+                            '<strong>إعداد الملف:</strong> أنشئوا مخططكم المتجهي على برنامج مثل AutoCAD أو Inkscape وقوموا بتصديره بصيغة **.svg** أو **.dxf**.',
+                            '<strong>التهيئة:</strong> ضعوا الورق والقلم على الآلة وحددوا نقطة البداية.',
+                            '<strong>البدء:</strong> أرسلوا الملف إلى الآلة وشاهدوا عملية الرسم الآلية.',
+                            '<strong>الاستخدام:</strong> يمكن أن يكون المخطط المرسوم بمثابة دليل للقطع، أو وثيقة فنية، أو مخطط مرجعي لمشاريعكم.'
+                        ]
+                    },
+                    appareils: {
+                        title: 'الأجهزة والأدوات الإلكترونية',
+                        description: 'الورشة مجهزة بجميع الأدوات وأجهزة القياس اللازمة لتطوير واختبار وإصلاح الدوائر الإلكترونية. الهدف هو جعلكم مستقلين في تشخيص وتجميع مشاريعكم.',
+                        tasks: [
+                            '<strong>راسم الذبذبات (Oscilloscope):</strong> استخدموه لتصور شكل الإشارات الكهربائية وتشخيص المشاكل في الوقت الحقيقي.',
+                            '<strong>مقياس متعدد (Multimeter):</strong> أداة أساسية لقياس الجهد، التيار، والمقاومة. تعلموا كيفية استخدامه للتحقق من التغذية الصحيحة لدوائركم.',
+                            '<strong>مكواة اللحام (Soldering Iron):</strong> تدربوا على لحام المكونات ذات الثقوب السطحية والمكونات المدمجة على لوحات الدارات المطبوعة.',
+                            '<strong>مصدر الطاقة المختبري:</strong> قوموا بتكوين الجهد والتيار لتغذية نماذجكم الأولية بأمان.',
+                            '<strong>الأدوات اليدوية:</strong> كماشة، مفكات، مقصات أسلاك... أتقنوا هذه الأدوات الأساسية لجميع أعمال التجميع والأسلاك.',
+                        ]
+                    }
+                }
+            }
+        };
+
+        let currentLang = 'fr'; // Langue par défaut
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.body.lang = lang; // Définit l'attribut lang pour le style CSS
+            updateContent();
+            updateActiveButton();
+        }
+
+        function updateContent() {
+            const langData = translations[currentLang];
+            
+            // Met à jour le contenu de la page d'accueil
+            document.getElementById('page-title').textContent = langData.pageTitle;
+            document.getElementById('main-title').textContent = langData.mainTitle;
+            document.getElementById('intro-text-1').innerHTML = langData.introText1;
+            document.getElementById('intro-text-2').textContent = langData.introText2;
+            document.getElementById('section-1-title').textContent = langData.section1Title;
+            document.getElementById('section-1-desc').textContent = langData.section1Desc;
+            document.getElementById('section-2-title').textContent = langData.section2Title;
+            document.getElementById('section-2-desc').textContent = langData.section2Desc;
+            document.getElementById('section-3-title').textContent = langData.section3Title;
+            document.getElementById('section-3-desc').textContent = langData.section3Desc;
+            document.getElementById('section-4-title').textContent = langData.section4Title;
+            document.getElementById('section-4-desc').textContent = langData.section4Desc;
+            document.getElementById('contact-title').textContent = langData.contactTitle;
+            document.getElementById('contact-text-1').textContent = langData.contactText1;
+            document.getElementById('contact-text-2').innerHTML = langData.contactText2;
+
+            // Si la page détaillée est affichée, la met à jour
+            const contentArea = document.getElementById('content-area');
+            if (contentArea.style.display !== 'none' && contentArea.dataset.pageId) {
+                showPage(contentArea.dataset.pageId);
+            }
+        }
+
+        function updateActiveButton() {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[onclick="setLanguage('${currentLang}')"]`).classList.add('active');
+        }
+
+        function showPage(pageId) {
+            const homePage = document.getElementById('home-page');
+            const contentArea = document.getElementById('content-area');
+            const langData = translations[currentLang];
+
+            if (pageId === 'home') {
+                homePage.style.display = 'block';
+                contentArea.style.display = 'none';
+                contentArea.dataset.pageId = '';
+                return;
+            }
+
+            const pageData = langData.pages[pageId];
+            let htmlContent = `
+                <h2>${pageData.title}</h2>
+                <p>${pageData.description}</p>
+                <h3>${langData.pages[pageId].tasks.length > 0 ? 'Tâches et exemples' : ''}</h3>
+                <ul>
+            `;
+            pageData.tasks.forEach((task) => {
+                htmlContent += `<li>${task}</li>`;
+            });
+            htmlContent += `</ul>
+                <a href="#" class="back-button" onclick="showPage('home')">${langData.backButton}</a>
+            `;
+            
+            contentArea.innerHTML = htmlContent;
+            homePage.style.display = 'none';
+            contentArea.style.display = 'block';
+            contentArea.dataset.pageId = pageId;
+        }
+
+        // Initialisation de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('fr');
+        });
+    </script>
+</body>
+</html>
