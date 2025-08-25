@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier d'Électronique</title>
+    <title>ورشة الإلكترونيات CRE</title>
     <style>
-        /* Styles CSS for the entire interface */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Tajawal', sans-serif;
             background-color: #f0f0f0;
             margin: 0;
             padding: 20px;
@@ -30,7 +32,7 @@
             text-shadow: 1px 1px 2px #c8e6c9;
         }
         .language-switcher {
-            text-align: right;
+            text-align: left;
             margin-bottom: 10px;
         }
         .language-switcher button {
@@ -40,7 +42,7 @@
             padding: 8px 12px;
             cursor: pointer;
             border-radius: 5px;
-            margin-left: 5px;
+            margin-right: 5px;
         }
         .language-switcher button:hover {
             background-color: #0056b3;
@@ -59,9 +61,20 @@
             margin: 15px 0;
             transition: transform 0.3s;
             cursor: pointer;
+            display: flex;
+            align-items: center;
         }
         .section:hover {
             transform: scale(1.02);
+        }
+        .section i {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-left: 20px;
+        }
+        .section-content {
+            text-align: right;
+            flex-grow: 1;
         }
         .section h2 {
             color: #007bff;
@@ -69,15 +82,17 @@
         }
         .section p {
             color: #555;
+            margin: 0;
         }
         #content-area {
             display: none;
-            text-align: left;
+            text-align: right;
             margin-top: 20px;
         }
-        #content-area h2 {
+        #content-area h2, #content-area h3 {
             border-bottom: 1px solid #ccc;
             padding-bottom: 5px;
+            text-align: right;
         }
         ul {
             list-style-type: none;
@@ -87,8 +102,9 @@
             background-color: #e9ecef;
             margin-bottom: 10px;
             padding: 10px;
-            border-left: 5px solid #007bff;
+            border-right: 5px solid #007bff;
             border-radius: 5px;
+            text-align: right;
         }
         .back-button {
             display: inline-block;
@@ -105,6 +121,58 @@
             padding-top: 20px;
             border-top: 1px solid #ccc;
         }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            text-align: right;
+        }
+        .form-group button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1.1em;
+        }
+        .form-group button:hover {
+            background-color: #218838;
+        }
+        .project-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .project-card {
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 10px;
+            width: 250px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .project-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -117,38 +185,57 @@
         </div>
         <div id="home-page">
             <div class="cre-logo-text">CRE</div>
-            <h1 id="main-title">Welcome to the Electronics Workshop</h1>
-            <p id="intro-text">Welcome students and project leaders! This page is your guide to discover the equipment available in our research workshop.</p>
+            <h1 id="main-title">أهلاً بكم في ورشة الإلكترونيات</h1>
+            <p id="intro-text">أهلاً بالطلاب والباحثين! هذه الصفحة هي دليلك لاكتشاف المعدات المتوفرة في ورشتنا البحثية.</p>
 
             <div class="section" onclick="showPage('3dprinting')">
-                <h2 id="3d-printing-title">3D Printing</h2>
-                <p id="3d-printing-text">Discover our Anycubic Cobra Max 3D printer. Learn how to use this machine to prototype your parts.</p>
+                <i class="fas fa-cube"></i>
+                <div class="section-content">
+                    <h2 id="3d-printing-title">الطباعة ثلاثية الأبعاد</h2>
+                    <p id="3d-printing-text">اكتشف طابعتنا ثلاثية الأبعاد Anycubic Cobra Max. تعلم كيفية استخدامها لإنشاء نماذج أولية لأجزائك.</p>
+                </div>
             </div>
 
             <div class="section" onclick="showPage('cnc')">
-                <h2 id="cnc-title">CNC Machine</h2>
-                <p id="cnc-text">Explore the possibilities of the CNC machine for manufacturing printed circuits and engraving materials.</p>
-            </div>
-
-            <div class="section" onclick="showPage('plotter')">
-                <h2 id="plotter-title">Plotter Table</h2>
-                <p id="plotter-text">Use our plotter table to accurately draw your diagrams and plans on paper.</p>
+                <i class="fas fa-cog"></i>
+                <div class="section-content">
+                    <h2 id="cnc-title">آلة التحكم الرقمي (CNC)</h2>
+                    <p id="cnc-text">استكشف إمكانيات آلة CNC لتصنيع الدوائر المطبوعة ونقش المواد.</p>
+                </div>
             </div>
 
             <div class="section" onclick="showPage('tools')">
-                <h2 id="tools-title">Electronics & Tools</h2>
-                <p id="tools-text">Familiarize yourself with measurement equipment like the oscilloscope and soldering and mounting tools.</p>
+                <i class="fas fa-tools"></i>
+                <div class="section-content">
+                    <h2 id="tools-title">الأجهزة والأدوات الإلكترونية</h2>
+                    <p id="tools-text">تعرف على معدات القياس مثل راسم الذبذبات وأدوات اللحام والتركيب.</p>
+                </div>
             </div>
 
-            <div class="contact">
-                <h2 id="contact-title">Contact</h2>
-                <p id="contact-text">For any questions or support requests, do not hesitate to contact the workshop manager.</p>
+            <div class="section" onclick="showPage('booking')">
+                <i class="fas fa-calendar-alt"></i>
+                <div class="section-content">
+                    <h2 id="booking-title">طلب حجز المواعيد</h2>
+                    <p id="booking-text">املأ النموذج لطلب حجز موعد لاستخدام أجهزة الورشة.</p>
+                </div>
+            </div>
+
+            <div class="section" onclick="showPage('projects')">
+                <i class="fas fa-trophy"></i>
+                <div class="section-content">
+                    <h2 id="projects-title">معرض إنجازات الورشة</h2>
+                    <p id="projects-text">استلهم من مشاريع الطلاب والباحثين التي تم إنجازها في ورشتنا.</p>
+                </div>
             </div>
         </div>
 
         <div id="content-area">
-            </div>
+        </div>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable@3.5.21/dist/jspdf.plugin.autotable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/arabic.js/0.3.0/arabic.js"></script>
 
     <script>
         const translations = {
@@ -158,51 +245,41 @@
                 '3dprinting_title': '3D Printing',
                 '3dprinting_text': 'Discover our Anycubic Cobra Max 3D printer. Learn how to use this machine to prototype your parts.',
                 '3dprinting_page_title': 'Anycubic Cobra Max 3D Printer',
-                '3dprinting_page_description': 'This 3D printer is a powerful tool to transform your digital models into physical objects. Here are the basic steps to use it:',
+                '3dprinting_page_description': 'This 3D printer is a powerful tool to transform your digital models into physical objects. Here is a quick start guide:',
                 '3dprinting_tasks': [
-                    '3D modeling (software: Fusion 360, Blender...).',
-                    'File preparation (slicer: Cura, PrusaSlicer).',
-                    'File transfer (.gcode) to the machine via SD card or USB.',
-                    'Bed calibration and filament loading.',
+                    'Prepare the digital model for printing.',
+                    'Transfer the file (.gcode) to the machine via SD card or USB.',
+                    'Calibrate the bed and load the filament.',
                     'Start printing and monitor the process.'
                 ],
                 'cnc_title': 'CNC Machine',
                 'cnc_text': 'Explore the possibilities of the CNC machine for manufacturing printed circuits and engraving materials.',
                 'cnc_page_title': 'CNC Engraving Machine',
-                'cnc_page_description': 'This machine allows you to manufacture printed circuit boards (PCBs) precisely by milling copper tracks. Here are the basic steps to use it:',
+                'cnc_page_description': 'This machine allows you to precisely manufacture printed circuit boards (PCBs) by milling copper tracks. Here is a quick start guide:',
                 'cnc_tasks': [
-                    'PCB design (software: KiCad, Eagle...).',
-                    'Gerber and Excellon file generation.',
-                    'Import into the control software (CAM).',
-                    'Tool and milling speed settings.',
+                    'Design the PCB and generate Gerber/Excellon files.',
+                    'Import files into the control software.',
+                    'Set up tools and milling speeds.',
                     'Start engraving and drilling.'
-                ],
-                'plotter_title': 'Plotter Table',
-                'plotter_text': 'Use our plotter table to accurately draw your diagrams and plans on paper.',
-                'plotter_page_title': 'Plotter Table',
-                'plotter_page_description': 'This machine allows you to precisely draw diagrams, circuit plans, or complex figures. Here are the basic steps to use it:',
-                'plotter_tasks': [
-                    'Creating the plan or diagram (software: AutoCAD, Inkscape...).',
-                    'Exporting the file in vector format (.svg, .dxf).',
-                    'Placing the paper and pen.',
-                    'Calibrating the starting points.',
-                    'Starting the plotting.'
                 ],
                 'tools_title': 'Electronics & Tools',
                 'tools_text': 'Familiarize yourself with measurement equipment like the oscilloscope and soldering and mounting tools.',
                 'tools_page_title': 'Electronic Devices and Tools',
-                'tools_page_description': 'This section is dedicated to measurement instruments and tools for circuit assembly and repair. Here are the basic steps to use them:',
+                'tools_page_description': 'This section is dedicated to measurement instruments and tools for circuit assembly and repair. Here is a quick start guide:',
                 'tools_tasks': [
                     'Learn to use an oscilloscope to visualize electrical signals.',
                     'Master the multimeter to measure voltage, current, and resistance.',
                     'Practice soldering electronic components.',
-                    'Use hand tools like pliers, screwdrivers, and wire strippers.',
-                    'Put each tool back in its place after use.'
+                    'Use hand tools like pliers, screwdrivers, and wire strippers.'
                 ],
-                'contact_title': 'Contact',
-                'contact_text': 'For any questions or support requests, do not hesitate to contact the workshop manager.',
+                'booking_title': 'Booking Request',
+                'booking_text': 'Fill out the form to request a booking for workshop equipment.',
+                'projects_title': 'Workshop Achievements Gallery',
+                'projects_text': 'Get inspired by student and researcher projects completed in our workshop.',
+                'projects_page_title': 'Workshop Achievements Gallery',
+                'projects_page_description': 'Here are some of the projects realized with our workshop\'s equipment. You could be next!',
                 'back_button': 'Back to Workshop',
-                'tasks_header': 'Tasks to perform',
+                'tasks_header': 'Quick Start Guide',
             },
             'fr': {
                 'title': 'Bienvenue à l\'Atelier d\'Électronique',
@@ -210,103 +287,83 @@
                 '3dprinting_title': 'Impression 3D',
                 '3dprinting_text': 'Découvrez notre imprimante 3D Anycubic Cobra Max. Apprenez à utiliser cette machine pour prototyper vos pièces.',
                 '3dprinting_page_title': 'Imprimante 3D Anycubic Cobra Max',
-                '3dprinting_page_description': 'Cette imprimante 3D est un outil puissant pour transformer vos modèles numériques en objets physiques. Voici les étapes de base pour l\'utiliser :',
+                '3dprinting_page_description': 'Cette imprimante 3D est un outil puissant pour transformer vos modèles numériques en objets physiques. Voici un guide de démarrage rapide :',
                 '3dprinting_tasks': [
-                    'Modélisation 3D (logiciel : Fusion 360, Blender...).',
-                    'Préparation du fichier (slicer : Cura, PrusaSlicer).',
-                    'Transfert du fichier (.gcode) à la machine via carte SD ou USB.',
-                    'Calibration du plateau et chargement du filament.',
-                    'Lancement de l\'impression et surveillance du processus.'
+                    'Préparez le modèle numérique pour l\'impression.',
+                    'Transférez le fichier (.gcode) à la machine via carte SD ou USB.',
+                    'Calibrez le plateau et chargez le filament.',
+                    'Lancez l\'impression et surveillez le processus.'
                 ],
                 'cnc_title': 'Machine CNC',
                 'cnc_text': 'Explorez les possibilités de la machine CNC pour la fabrication de circuits imprimés et la gravure de matériaux.',
                 'cnc_page_title': 'Machine de Gravure CNC',
-                'cnc_page_description': 'Cette machine permet de fabriquer des circuits imprimés de manière précise en fraisant les pistes de cuivre. Voici les étapes de base pour l\'utiliser :',
+                'cnc_page_description': 'Cette machine permet de fabriquer des circuits imprimés de manière précise en fraisant les pistes de cuivre. Voici un guide de démarrage rapide :',
                 'cnc_tasks': [
-                    'Conception du PCB (logiciel : KiCad, Eagle...).',
-                    'Génération des fichiers Gerber et Excellon.',
-                    'Importation dans le logiciel de pilotage (CAM).',
-                    'Paramétrage des outils et des vitesses de fraisage.',
-                    'Lancement de la gravure et de perçage.'
-                ],
-                'plotter_title': 'Table Traceur',
-                'plotter_text': 'Utilisez notre table traceur pour dessiner vos schémas et plans de manière précise sur papier.',
-                'plotter_page_title': 'Table Traceur',
-                'plotter_page_description': 'Cette machine permet de dessiner avec précision des schémas, des plans de circuits ou des figures complexes. Voici les étapes de base pour l\'utiliser :',
-                'plotter_tasks': [
-                    'Création du plan ou du schéma (logiciel : AutoCAD, Inkscape...).',
-                    'Exportation du fichier au format vectoriel (.svg, .dxf).',
-                    'Mise en place du papier et du stylo.',
-                    'Calibration des points de départ.',
-                    'Lancement du traçage.'
+                    'Concevez le PCB et générez les fichiers Gerber/Excellon.',
+                    'Importez les fichiers dans le logiciel de pilotage.',
+                    'Configurez les outils et les vitesses de fraisage.',
+                    'Lancez la gravure et le perçage.'
                 ],
                 'tools_title': 'Appareils Électroniques & Outils',
                 'tools_text': 'Familiarisez-vous avec les équipements de mesure comme l\'oscilloscope et les outils de soudure et de montage.',
                 'tools_page_title': 'Appareils Électroniques et Outils',
-                'tools_page_description': 'Cette section est dédiée aux instruments de mesure et aux outils pour l\'assemblage et la réparation de circuits. Voici les étapes de base pour les utiliser :',
+                'tools_page_description': 'Cette section est dédiée aux instruments de mesure et aux outils pour l\'assemblage et la réparation de circuits. Voici un guide de démarrage rapide :',
                 'tools_tasks': [
-                    'Apprendre à utiliser un oscilloscope pour visualiser des signaux électriques.',
-                    'Maîtriser le multimètre pour mesurer la tension, le courant et la résistance.',
-                    'Pratiquer la soudure sur des composants électroniques.',
-                    'Utiliser des outils manuels comme les pinces, les tournevis et les dénudeurs de fils.',
-                    'Ranger chaque outil à sa place après utilisation.'
+                    'Apprenez à utiliser un oscilloscope pour visualiser des signaux électriques.',
+                    'Maîtrisez le multimètre pour mesurer la tension, le courant et la résistance.',
+                    'Pratiquez la soudure sur des composants électroniques.',
+                    'Utilisez des outils manuels comme les pinces, les tournevis et les dénudeurs de fils.'
                 ],
-                'contact_title': 'Contact',
-                'contact_text': 'Pour toute question ou demande de support, n\'hésitez pas à contacter le responsable de l\'atelier.',
+                'booking_title': 'Demande de Réservation',
+                'booking_text': 'Remplissez le formulaire pour demander une réservation d\'équipement d\'atelier.',
+                'projects_title': 'Galerie des Réalisations de l\'Atelier',
+                'projects_text': 'Inspirez-vous des projets des étudiants et chercheurs réalisés dans notre atelier.',
+                'projects_page_title': 'Galerie des Réalisations de l\'Atelier',
+                'projects_page_description': 'Voici quelques-uns des projets réalisés avec l\'équipement de notre atelier. Vous pourriez être le prochain !',
                 'back_button': 'Retour à l\'Atelier',
-                'tasks_header': 'Tâches à réaliser',
+                'tasks_header': 'Guide de Démarrage Rapide',
             },
             'ar': {
                 'title': 'أهلاً بكم في ورشة الإلكترونيات',
-                'intro': 'أهلاً بالطلاب وأصحاب المشاريع! هذه الصفحة هي دليلك لاكتشاف المعدات المتوفرة في ورشة البحث الخاصة بنا.',
+                'intro': 'أهلاً بالطلاب والباحثين! هذه الصفحة هي دليلك لاكتشاف المعدات المتوفرة في ورشتنا البحثية.',
                 '3dprinting_title': 'الطباعة ثلاثية الأبعاد',
-                '3dprinting_text': 'اكتشف طابعتنا ثلاثية الأبعاد Anycubic Cobra Max. تعلم كيفية استخدام هذه الآلة لإنشاء نماذج أولية لأجزائك.',
+                '3dprinting_text': 'اكتشف طابعتنا ثلاثية الأبعاد Anycubic Cobra Max. تعلم كيفية استخدامها لإنشاء نماذج أولية لأجزائك.',
                 '3dprinting_page_title': 'الطابعة ثلاثية الأبعاد Anycubic Cobra Max',
-                '3dprinting_page_description': 'تعتبر هذه الطابعة ثلاثية الأبعاد أداة قوية لتحويل نماذجك الرقمية إلى أشياء مادية. إليك الخطوات الأساسية لاستخدامها:',
+                '3dprinting_page_description': 'تعتبر هذه الطابعة أداة قوية لتحويل نماذجك الرقمية إلى أشياء مادية. إليك دليل البدء السريع:',
                 '3dprinting_tasks': [
-                    'النمذجة ثلاثية الأبعاد (برامج: Fusion 360, Blender...).',
-                    'إعداد الملف (برامج: Cura, PrusaSlicer).',
-                    'نقل الملف (.gcode) إلى الطابعة عبر بطاقة SD أو USB.',
-                    'معايرة الطبقة وتحميل الخيط.',
-                    'بدء الطباعة ومراقبة العملية.'
+                    'أولاً: قم بإعداد النموذج الرقمي للطباعة.',
+                    'ثانياً: انقل الملف (.gcode) إلى الطابعة عبر بطاقة SD أو USB.',
+                    'ثالثاً: قم بمعايرة الطبقة وتحميل الخيط.',
+                    'رابعاً: ابدأ الطباعة وراقب العملية.'
                 ],
                 'cnc_title': 'آلة التحكم الرقمي (CNC)',
-                'cnc_text': 'اكتشف إمكانيات آلة CNC لتصنيع الدوائر المطبوعة ونقش المواد.',
+                'cnc_text': 'استكشف إمكانيات آلة CNC لتصنيع الدوائر المطبوعة ونقش المواد.',
                 'cnc_page_title': 'آلة النقش بالتحكم الرقمي (CNC)',
-                'cnc_page_description': 'تسمح لك هذه الآلة بتصنيع لوحات الدوائر المطبوعة (PCBs) بدقة عن طريق تفريز مسارات النحاس. إليك الخطوات الأساسية لاستخدامها:',
+                'cnc_page_description': 'تسمح لك هذه الآلة بتصنيع لوحات الدوائر المطبوعة (PCBs) بدقة عن طريق تفريز مسارات النحاس. إليك دليل البدء السريع:',
                 'cnc_tasks': [
-                    'تصميم الـ PCB (برامج: KiCad, Eagle...).',
-                    'إنشاء ملفات Gerber و Excellon.',
-                    'استيراد الملفات إلى برنامج التحكم.',
-                    'إعداد الأدوات وسرعات التفريز.',
-                    'بدء عملية النقش والحفر.'
-                ],
-                'plotter_title': 'طاولة الراسم',
-                'plotter_text': 'استخدم طاولة الراسم الخاصة بنا لرسم مخططاتك وخططك بدقة على الورق.',
-                'plotter_page_title': 'طاولة الراسم',
-                'plotter_page_description': 'تسمح لك هذه الآلة برسم مخططات، خطط دوائر أو أشكال معقدة بدقة. إليك الخطوات الأساسية لاستخدامها:',
-                'plotter_tasks': [
-                    'إنشاء المخطط أو الخطة (برامج: AutoCAD, Inkscape...).',
-                    'تصدير الملف بصيغة فيكتور (.svg, .dxf).',
-                    'تثبيت الورقة والقلم.',
-                    'معايرة نقاط البداية.',
-                    'بدء عملية الرسم.'
+                    'أولاً: قم بتصميم الـ PCB وإنشاء ملفات Gerber/Excellon.',
+                    'ثانياً: استورد الملفات إلى برنامج التحكم.',
+                    'ثالثاً: قم بإعداد الأدوات وسرعات التفريز.',
+                    'رابعاً: ابدأ عملية النقش والحفر.'
                 ],
                 'tools_title': 'الأجهزة والأدوات الإلكترونية',
                 'tools_text': 'تعرف على معدات القياس مثل راسم الذبذبات وأدوات اللحام والتركيب.',
                 'tools_page_title': 'الأجهزة والأدوات الإلكترونية',
-                'tools_page_description': 'هذا القسم مخصص لأدوات القياس وأدوات التجميع وإصلاح الدوائر. إليك الخطوات الأساسية لاستخدامها:',
+                'tools_page_description': 'هذا القسم مخصص لأدوات القياس وأدوات التجميع وإصلاح الدوائر. إليك دليل البدء السريع:',
                 'tools_tasks': [
-                    'تعلم استخدام راسم الذبذبات (oscilloscope) لتصوير الإشارات الكهربائية.',
-                    'إتقان استخدام جهاز قياس متعدد (multimeter) لقياس الجهد، التيار والمقاومة.',
-                    'التدرب على لحام المكونات الإلكترونية.',
-                    'استخدام الأدوات اليدوية مثل الكماشات، والمفكات، ومقشرات الأسلاك.',
-                    'إعادة كل أداة إلى مكانها بعد الاستخدام.'
+                    'أولاً: تعلم استخدام راسم الذبذبات (oscilloscope) لتصوير الإشارات الكهربائية.',
+                    'ثانياً: أتقن استخدام جهاز قياس متعدد (multimeter) لقياس الجهد، التيار والمقاومة.',
+                    'ثالثاً: تدرب على لحام المكونات الإلكترونية.',
+                    'رابعاً: استخدم الأدوات اليدوية مثل الكماشات، والمفكات، ومقشرات الأسلاك.'
                 ],
-                'contact_title': 'للتواصل',
-                'contact_text': 'لأية استفسارات أو طلبات دعم، لا تتردد في التواصل مع مسؤول الورشة.',
+                'booking_title': 'طلب حجز المواعيد',
+                'booking_text': 'املأ النموذج لطلب حجز موعد لاستخدام أجهزة الورشة.',
+                'projects_title': 'معرض إنجازات الورشة',
+                'projects_text': 'استلهم من مشاريع الطلاب والباحثين التي تم إنجازها في ورشتنا.',
+                'projects_page_title': 'معرض إنجازات الورشة',
+                'projects_page_description': 'هذه بعض المشاريع التي تم تحقيقها باستخدام معدات ورشتنا. يمكنك أن تكون القادم!',
                 'back_button': 'العودة إلى الورشة',
-                'tasks_header': 'المهام التي يجب القيام بها',
+                'tasks_header': 'دليل البدء السريع',
             }
         };
 
@@ -321,46 +378,104 @@
                 'description_key': 'cnc_page_description',
                 'tasks_key': 'cnc_tasks'
             },
-            'plotter': {
-                'title_key': 'plotter_page_title',
-                'description_key': 'plotter_page_description',
-                'tasks_key': 'plotter_tasks'
-            },
             'tools': {
                 'title_key': 'tools_page_title',
                 'description_key': 'tools_page_description',
                 'tasks_key': 'tools_tasks'
+            },
+            'projects': {
+                'title_key': 'projects_page_title',
+                'description_key': 'projects_page_description',
+                'content': `
+                    <div class="project-gallery">
+                        <div class="project-card">
+                            <img src="https://via.placeholder.com/250x150.png?text=Drone+Project" alt="مشروع طائرة بدون طيار">
+                            <h3>مشروع طائرة بدون طيار</h3>
+                            <p>هيكل الطائرة تم طباعته باستخدام الطابعة ثلاثية الأبعاد.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="https://via.placeholder.com/250x150.png?text=Smart+Lock" alt="قفل ذكي">
+                            <h3>نظام قفل ذكي</h3>
+                            <p>اللوحة الإلكترونية (PCB) تم تصنيعها بدقة باستخدام آلة CNC.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="https://via.placeholder.com/250x150.png?text=Robot+Arm" alt="ذراع روبوتية">
+                            <h3>ذراع روبوتية</h3>
+                            <p>تجميع الدائرة والتحقق من الإشارات باستخدام راسم الذبذبات.</p>
+                        </div>
+                    </div>
+                `
             }
         };
 
-        function updateContent(lang) {
-            document.getElementById('main-title').textContent = translations[lang]['title'];
-            document.getElementById('intro-text').textContent = translations[lang]['intro'];
-            document.getElementById('3d-printing-title').textContent = translations[lang]['3dprinting_title'];
-            document.getElementById('3d-printing-text').textContent = translations[lang]['3dprinting_text'];
-            document.getElementById('cnc-title').textContent = translations[lang]['cnc_title'];
-            document.getElementById('cnc-text').textContent = translations[lang]['cnc_text'];
-            document.getElementById('plotter-title').textContent = translations[lang]['plotter_title'];
-            document.getElementById('plotter-text').textContent = translations[lang]['plotter_text'];
-            document.getElementById('tools-title').textContent = translations[lang]['tools_title'];
-            document.getElementById('tools-text').textContent = translations[lang]['tools_text'];
-            document.getElementById('contact-title').textContent = translations[lang]['contact_title'];
-            document.getElementById('contact-text').textContent = translations[lang]['contact_text'];
+        let currentPageId = 'home';
+        // IMPORTANT: Collez ici la chaîne de caractères Base64 complète pour la police Tajawal
+        // Exemple: const tajawalFont = 'AAEAAAASAIAAAwAC...'; 
+        const tajawalFont = ''; // <-- LAISSER VIDE SI VOUS N'AVEZ PAS LA POLICE, MAIS L'ARABE NE MARCHERA PAS DANS LE PDF
 
-            // Change page direction
-            document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-            document.querySelector('.container').dir = (lang === 'ar') ? 'rtl' : 'ltr';
-            // Update back button language on home page
-            const backButton = document.querySelector('#content-area .back-button');
-            if (backButton) {
-                backButton.textContent = translations[lang]['back_button'];
+        function generatePDF() {
+            // On s'assure que le PDF est toujours généré en français
+            const translatedContent = {
+                'pdf_title': 'Demande de Travail',
+                'form_demande_par': 'Demande établie par',
+                'form_equipement': 'Equipement',
+                'form_date_demande': 'Date',
+                'form_objet_demande': 'Objet de la demande de travail'
+            };
+            
+            const demandePar = document.getElementById('demandePar').value;
+            const equipement = document.getElementById('equipement').value;
+            const dateDemande = document.getElementById('dateDemande').value;
+            const objetDemande = document.getElementById('objetDemande').value;
+
+            const form = document.getElementById('booking-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
             }
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // Si la police est fournie, on l'utilise
+            if(tajawalFont) {
+                doc.addFileToVFS('Tajawal-Regular.ttf', tajawalFont);
+                doc.addFont('Tajawal-Regular.ttf', 'Tajawal', 'normal');
+                doc.setFont('Tajawal');
+            }
+
+            doc.setFontSize(22);
+            doc.text(translatedContent.pdf_title, 105, 20, { align: 'center' });
+
+            doc.setFontSize(14);
+            // Utilisation de jspdf-autotable pour une meilleure mise en page
+            doc.autoTable({
+                startY: 40,
+                head: [['Champ', 'Valeur']],
+                body: [
+                    [translatedContent.form_demande_par, demandePar],
+                    [translatedContent.form_equipement, equipement],
+                    [translatedContent.form_date_demande, dateDemande],
+                    [translatedContent.form_objet_demande, objetDemande]
+                ],
+                theme: 'grid',
+                styles: { font: 'Tajawal', halign: 'right' }, // Alignement à droite pour les cellules
+                headStyles: { halign: 'center', fontStyle: 'bold' }
+            });
+            
+            doc.save('demande-de-travail.pdf');
         }
 
         function showPage(pageId) {
             const homePage = document.getElementById('home-page');
             const contentArea = document.getElementById('content-area');
             const currentLang = document.documentElement.lang;
+
+            currentPageId = pageId;
 
             if (pageId === 'home') {
                 homePage.style.display = 'block';
@@ -370,45 +485,103 @@
 
             const pageData = pages[pageId];
             const translatedContent = translations[currentLang];
-            let htmlContent = `
-                <h2>${translatedContent[pageData.title_key]}</h2>
-                <p>${translatedContent[pageData.description_key]}</p>
-                <h3>${translatedContent['tasks_header']}</h3>
-                <ul>
-            `;
-            translatedContent[pageData.tasks_key].forEach((task, index) => {
-                const taskPrefix = (currentLang === 'en') ? `Task ${index + 1}:` : (currentLang === 'fr') ? `Tâche ${index + 1} :` : `المهمة ${index + 1}:`;
-                htmlContent += `<li><strong>${taskPrefix}</strong> ${task}</li>`;
-            });
-            htmlContent += `</ul>
-                <div class="back-button" onclick="showPage('home')">${translatedContent['back_button']}</div>
-            `;
+            let htmlContent = '';
+
+            if (pageId === 'booking') {
+                // Le formulaire est maintenant codé en dur en français
+                htmlContent = `
+                    <h2>Demande de Travail</h2>
+                    <p>Veuillez remplir ce formulaire. Ensuite, téléchargez le fichier PDF de votre demande et soumettez-le au responsable de l'atelier.</p>
+                    <form id="booking-form" onsubmit="event.preventDefault(); generatePDF();">
+                        <div class="form-group">
+                            <label for="demandePar">Demande établie par</label>
+                            <input type="text" id="demandePar" name="demandePar" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="equipement">Equipement</label>
+                            <input type="text" id="equipement" name="equipement" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateDemande">Date</label>
+                            <input type="date" id="dateDemande" name="dateDemande" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="objetDemande">Objet de la demande de travail</label>
+                            <textarea id="objetDemande" name="objetDemande" rows="6" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Télécharger la demande PDF</button>
+                        </div>
+                    </form>
+                    <div class="back-button" onclick="showPage('home')">${translatedContent['back_button']}</div>
+                `;
+            } else if (pageId === 'projects') {
+                htmlContent = `
+                    <h2>${translatedContent[pageData.title_key]}</h2>
+                    <p>${translatedContent[pageData.description_key]}</p>
+                    ${pageData.content}
+                    <div class="back-button" onclick="showPage('home')">${translatedContent['back_button']}</div>
+                `;
+            } else {
+                htmlContent = `
+                    <h2>${translatedContent[pageData.title_key]}</h2>
+                    <p>${translatedContent[pageData.description_key]}</p>
+                    <h3>${translatedContent['tasks_header']}</h3>
+                    <ul>
+                `;
+                translatedContent[pageData.tasks_key].forEach((task) => {
+                    htmlContent += `<li>${task}</li>`;
+                });
+                htmlContent += `</ul>
+                    <div class="back-button" onclick="showPage('home')">${translatedContent['back_button']}</div>
+                `;
+            }
             
             contentArea.innerHTML = htmlContent;
             homePage.style.display = 'none';
             contentArea.style.display = 'block';
-        }
 
-        function changeLanguage(lang) {
-            document.documentElement.lang = lang;
-            updateContent(lang);
-            // If on a sub-page, update the content of that page as well
-            if (document.getElementById('content-area').style.display === 'block') {
-                const currentPage = Object.keys(pages).find(key => {
-                    const content = document.getElementById('content-area').innerHTML;
-                    return content.includes(translations['en'][pages[key].title_key]) || content.includes(translations['ar'][pages[key].title_key]) || content.includes(translations['fr'][pages[key].title_key]);
-                });
-                if (currentPage) {
-                    showPage(currentPage);
-                }
+            // Mettre à jour le texte du bouton "Retour" si on n'est pas sur la page de réservation
+            if(pageId !== 'booking') {
+                updateContent(currentLang);
             }
         }
 
-        // Initial content load
-        document.addEventListener('DOMContentLoaded', () => {
-            changeLanguage('en'); // Set default language to English
-        });
+        function updateContent(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+            
+            document.getElementById('main-title').textContent = translations[lang]['title'];
+            document.getElementById('intro-text').textContent = translations[lang]['intro'];
+            document.getElementById('3d-printing-title').textContent = translations[lang]['3dprinting_title'];
+            document.getElementById('3d-printing-text').textContent = translations[lang]['3dprinting_text'];
+            document.getElementById('cnc-title').textContent = translations[lang]['cnc_title'];
+            document.getElementById('cnc-text').textContent = translations[lang]['cnc_text'];
+            document.getElementById('tools-title').textContent = translations[lang]['tools_title'];
+            document.getElementById('tools-text').textContent = translations[lang]['tools_text'];
+            document.getElementById('booking-title').textContent = translations[lang]['booking_title'];
+            document.getElementById('booking-text').textContent = translations[lang]['booking_text'];
+            document.getElementById('projects-title').textContent = translations[lang]['projects_title'];
+            document.getElementById('projects-text').textContent = translations[lang]['projects_text'];
+            
+            const backButton = document.querySelector('#content-area .back-button');
+            if (backButton) {
+                backButton.textContent = translations[lang]['back_button'];
+            }
+        }
 
+        function changeLanguage(lang) {
+            updateContent(lang);
+
+            if (document.getElementById('content-area').style.display === 'block') {
+                showPage(currentPageId);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('ar'); 
+        });
     </script>
 </body>
 </html>
